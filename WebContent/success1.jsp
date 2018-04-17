@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h2>成功添加，保存成功！</h2><br/><br/>
-    <h2><a href="index.jsp">Back Index</a></h2>
+	操作成功！
+	<a href="listAllStudents">list all student</a>
+
 </body>
 </html>
