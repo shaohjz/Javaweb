@@ -5,6 +5,7 @@ import java.util.List;
 import swu.edu.cn.mvcapp.dao.domain.Customer;
 
 public interface CustomerDAO {
+	public List<Customer> getForListWithCriteriaCustomer(CriteriaCustomer cc);
     public List<Customer> getAll();//获取Customer列表信息
     public void save(Customer customer);//对Customer的添加,通过CTRL+T转到定义
     public void update(Customer customer);//对Customer的更新,通过CTRL+T转到定义

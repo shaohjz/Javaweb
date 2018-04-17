@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import swu.edu.cn.mvcapp.dao.CriteriaCustomer;
 import swu.edu.cn.mvcapp.dao.CustomerDAO;
 import swu.edu.cn.mvcapp.dao.impl.CustomerDAOJdbcImpl;
 import swu.edu.cn.mvcapp.dao.domain.Customer;
@@ -121,18 +122,23 @@ public class CustomerServlet extends HttpServlet {
     }
     //模糊查询
     private void query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String name=request.getParameter("name");
-        String address=request.getParameter("address");
-        String phone=request.getParameter("phone");
-        //1 调用CustomerDAO的getALl方法得到Customer集合
-        //获取所有信息列表
-        List<Customer> customers=customerDAO.getAll();
-        //List<Customer> customers=customerDAO.getForListWithCriteriaCustomer(cc);
-        //2 把customer的集合放入request
-        request.setAttribute("customers", customers);
-        //3 转发页面index.jsp（不能使用重定向）
-        request.getRequestDispatcher("/index.jsp").forward(request,response);
-    }
+		//获取模糊查询的请求参数
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		
+		//把请求参数封装为一个 CriteriaCustomer 对象
+		CriteriaCustomer cc = new CriteriaCustomer(name, address, phone);
+		
+		//1. 调用 CustomerDAO 的 getForListWithCriteriaCustomer() 得到 Customer 的集合
+		List<Customer> customers = customerDAO.getForListWithCriteriaCustomer(cc);
+		
+		//2. 把 Customer 的集合放入 request 中
+		request.setAttribute("customers", customers);
+		
+		//3. 转发页面到 index.jsp(不能使用重定向)
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+	}
 
     private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String idstr=request.getParameter("id").trim();

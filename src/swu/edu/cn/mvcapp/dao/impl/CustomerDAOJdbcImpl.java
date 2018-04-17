@@ -4,10 +4,18 @@
 
 import swu.edu.cn.mvcapp.dao.CustomerDAO;
  import swu.edu.cn.mvcapp.dao.DAO;
- import swu.edu.cn.mvcapp.dao.domain.Customer;;
-
+ import swu.edu.cn.mvcapp.dao.domain.Customer;
+ import swu.edu.cn.mvcapp.dao.CriteriaCustomer;
 
 public class CustomerDAOJdbcImpl extends DAO<Customer> implements CustomerDAO{
+	public List<Customer> getForListWithCriteriaCustomer(CriteriaCustomer cc) {
+		String sql = "SELECT id, name, address, phone FROM customers WHERE " +
+				"name LIKE ? AND address LIKE ? AND phone LIKE ?";
+		//修改了 CriteriaCustomer 的 getter 方法: 使其返回的字符串中有 "%%".
+		//若返回值为 null 则返回 "%%", 若不为 null, 则返回 "%" + 字段本身的值 + "%"
+		return getForList(sql, cc.getName(), cc.getAddress(), cc.getPhone());
+	}
+	
     @Override
     public List<Customer> getAll() {
         String sql="select * from customers";
