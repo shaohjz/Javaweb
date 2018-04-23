@@ -1,19 +1,15 @@
 <%@page import="swu.edu.cn.mvcapp.dao.domain.Customer"%>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+<%@ page language="java" import="java.util.List" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
-    
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>My JSP 'index.jsp' starting page</title>
-    
-  <script type="text/javascript" src="scripts/jquery.min.js"></script>
-  <script type="text/javascript">
+<script type="text/javascript" src="scripts/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+
      $(function(){
          $('.delete').click(function(){
             var content=$(this).parent().parent().find("td:eq(1)").text();
@@ -23,7 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      });
   </script>
   </head>
-  
   <body>
       <form action="query.do">
          <table>
