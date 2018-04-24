@@ -29,7 +29,6 @@ public class CustomerDAOFactory {
 		daos.put("xml", new CustomerDAOXMLImpl());
 	}
 	
-	
 	public CustomerDAO getCustomerDAO(){
 		return daos.get(type);
 	}
