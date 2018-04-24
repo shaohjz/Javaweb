@@ -58,3 +58,72 @@ jsp 文件中 jquery 的写法：
 
 2.多个请求对应一个 servlet：
 ![MVC 案例小结1](http://p7mezsuru.bkt.clouddn.com/15244565673805.jpg "在这里输入图片标题")
+3.查询：MVC 的整个的流程
+query.do-->doPost-->query-->JSP
+query方法的代码：
+```
+//1. 调用 CustomerDAO 的 getForListWithCriteriaCustomer() 得到 Customer 的集合
+		List<Customer> customers = customerDAO.getForListWithCriteriaCustomer(cc);
+		
+		//2. 把 Customer 的集合放入 request 中
+		request.setAttribute("customers", customers);
+		
+		//3. 转发页面到 index.jsp(不能使用重定向)
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+```
+JSP：获取 request 中的 customers 属性，遍历显示
+```
+<%
+          List<Customer> customers=(List<Customer>)request.getAttribute("customers");
+          for(Customer customer:customers){
+%>
+            <tr>
+               <td><%=customer.getId() %></td>
+               <td><%=customer.getName() %></td>
+               <td><%=customer.getAddress() %></td>
+               <td><%=customer.getPhone() %></td>
+               <td>
+                   <a  href="edit.do?id=<%=customer.getId() %>">Update</a>
+                   <a href="delete.do?id=<%=customer.getId() %>" class="delete">Delete</a>
+               </td> 
+               </tr>
+               <%
+                }
+                %>
+       </table>
+       <%
+           }
+        %>
+```
+     
+4.模糊查询
+1）.SQL语句：CustomerDAOJdbcimpl.java 文件的List<Customer> getForListWithCriteriaCustomer(CriteriaCustomer cc)方法
+		
+String sql = "SELECT id, name, address, phone FROM customers WHERE " +
+				"name LIKE ? AND address LIKE ? AND phone LIKE ?";
+2）.填充占位符的技巧：
+```
+	public String getName() {
+		if(name == null)
+			name = "%%";
+		else
+			name = "%" + name + "%";
+		return name;
+	}
+
+```
+3）.把查阅条件封装为一个 JavaBean
+```
+public class CriteriaCustomer {
+
+	private String name;
+	
+	private String address;
+	
+	private String phone;
+        //...
+
+}
+
+```
+4）.

@@ -24,16 +24,17 @@ import javax.servlet.http.HttpServletResponse;
 import swu.edu.cn.mvcapp.dao.CriteriaCustomer;
 import swu.edu.cn.mvcapp.dao.CustomerDAO;
 import swu.edu.cn.mvcapp.dao.impl.CustomerDAOJdbcImpl;
+import swu.edu.cn.mvcapp.dao.impl.CustomerDAOXMLImpl;
 import swu.edu.cn.mvcapp.dao.domain.Customer;
 
 
 public class CustomerServlet extends HttpServlet {
 
 
-    //private CustomerDAO customerDAO=new CustomerDAOJdbcImpl();
+    private CustomerDAO customerDAO=new CustomerDAOJdbcImpl();
     //private CustomerDAO customerDAO=new CustomerDAOXMLImpl();
 	//  private CustomerDAO customerDAO=CustomerDAOFactory.getInstance().getCustomerDAO();
-	private CustomerDAO customerDAO=new CustomerDAOJdbcImpl();
+	//private CustomerDAO customerDAO=new CustomerDAOJdbcImpl();
 	
 	
 
