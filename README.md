@@ -2,7 +2,7 @@
 ### 
 
 # 第七周
-[教程例子实现链接](http://shaohjz.site:8080/JAVAWEB_LEARN/)
+[MVC教程例子实现链接](http://shaohjz.site:8080/JAVAWEB_LEARN/)
 
 实现了数据的增删查，修改部分还没看，下次会跟上进度。
 按照教程做的发现中文编码有问题，输入中文 name、address 会变成“？”，问号，修改了 jspcharset 以及 pageencoding 属性和 tomcat 中的server.xml配置文件，没有奏效。。。还在尝试中。。。。。。
