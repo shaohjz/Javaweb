@@ -17,4 +17,11 @@
     <servlet-name>CustomerServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>InitServlet</servlet-name>
+    <servlet-class>swu.edu.cn.mvcapp.servlet.InitServlet</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
 </web-app>

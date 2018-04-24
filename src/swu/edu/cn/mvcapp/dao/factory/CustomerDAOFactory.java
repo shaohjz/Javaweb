@@ -5,6 +5,7 @@ import java.util.Map;
 
 import swu.edu.cn.mvcapp.dao.CustomerDAO;
 import swu.edu.cn.mvcapp.dao.impl.CustomerDAOJdbcImpl;
+import swu.edu.cn.mvcapp.dao.impl.CustomerDAOXMLImpl;
 
 public class CustomerDAOFactory {
 	
@@ -25,7 +26,9 @@ public class CustomerDAOFactory {
 	
 	private CustomerDAOFactory(){
 		daos.put("jdbc", new CustomerDAOJdbcImpl());
+		daos.put("xml", new CustomerDAOXMLImpl());
 	}
+	
 	
 	public CustomerDAO getCustomerDAO(){
 		return daos.get(type);
