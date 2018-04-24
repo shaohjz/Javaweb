@@ -51,4 +51,8 @@ jsp 文件中 jquery 的写法：
 	});
 </script>
 ```
+1.MVC整体的架构：
+![MVC整体的架构](http://p7mezsuru.bkt.clouddn.com/15244576395628.jpg "在这里输入图片标题")
+
+2.多个请求对应一个 servlet：
 ![MVC 案例小结1](http://p7mezsuru.bkt.clouddn.com/15244565673805.jpg "在这里输入图片标题")
