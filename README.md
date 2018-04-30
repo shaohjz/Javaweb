@@ -128,7 +128,7 @@ public class CriteriaCustomer {
 ```
 4）.
 
- **# 第九周** 
+# 第九周
 
 ## 整理加深理解mvc的案例，学习cookie部分。
 http是无状态协议，所以购物车类的应用，需要一种机制记录用BS的响应。
