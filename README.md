@@ -127,3 +127,31 @@ public class CriteriaCustomer {
 
 ```
 4）.
+
+ **# 第九周** 
+
+## 整理加深理解mvc的案例，学习cookie部分。
+http是无状态协议，所以购物车类的应用，需要一种机制记录用BS的响应。
+Servlet两种机制：
+1. Cookie
+2. Session
+
+
+### Cookie机制：浏览器访问服务器时，web服务器再http响应头中传送给浏览器的文本文件，浏览器保存后，以后每次访问该浏览器都会传给WEB服务器。
+jsp中Cookie的创建：
+    Cookie cookie =new Cookie（“name”，“cookie的name”）；
+服务器调用response的addCookie传给客户端的浏览器：
+response.addCookie(cookie);
+*首次访问，浏览器没有存储该地址的Cookie
+*
+
+获取Cookiename和value（cookie只有name和value），有getName和getValue
+
+ **获取cookie：** 
+request.getCookies（）
+
+Cookie的发送，放入http响应报文，默认用户退出后被删除。
+
+像存储于磁盘上的Cookie，是需要设置MaxAge，要用setMaxAge（）方法，数值单位是秒：0表示命令浏览器删除内存中的Coookie，负数是永远不会存储Coookie
+就是Coookie的持久化
+
