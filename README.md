@@ -8,7 +8,7 @@
 
 
 实现了数据的增删查，修改部分还没看，下次会跟上进度。
-按照教程做的发现中文编码有问题，输入中文 name、address 会变成“？”，问号，修改了 jspcharset 以及 pageencoding 属性和 tomcat 中的server.xml配置文件，没有奏效。。。还在尝试中。。。。。。
+
 对这个项目里的，jdbc、dao 部分写的时候，不懂，
     private Class<T> clazz;
     public DAO(){
@@ -138,7 +138,7 @@ Servlet两种机制：
 
 
 ### Cookie机制：浏览器访问服务器时，web服务器再http响应头中传送给浏览器的文本文件，浏览器保存后，以后每次访问该浏览器都会传给WEB服务器。
-jsp中Cookie的创建：
+//jsp中Cookie的创建：
     Cookie cookie =new Cookie（“name”，“cookie的name”）；
 服务器调用response的addCookie传给客户端的浏览器：
 response.addCookie(cookie);
@@ -152,6 +152,36 @@ request.getCookies（）
 
 Cookie的发送，放入http响应报文，默认用户退出后被删除。
 
+![cookie传送过程示意图](http://p7mezsuru.bkt.clouddn.com/2018-05-02-15252279850846.jpg "在这里输入图片标题")
+
+
+COOKIE API:
+1）向客户端浏览器写入Cookie
+//创建一个cookie对象
+Cookie cookie =new Cookie（“name”，“cookie的name”）；
+//setMaxAge
 像存储于磁盘上的Cookie，是需要设置MaxAge，要用setMaxAge（）方法，数值单位是秒：0表示命令浏览器删除内存中的Coookie，负数是永远不会存储Coookie
 就是Coookie的持久化
+//设置Cookie的作用范围：可以作用当前目录和当前目录的子目录，但不能作用于当前目录的上一级目录
+cookie.setPath(request.get(ContextPath());
+//调用response的一个方法把Cookie传给客户端
+response.addCookie(cookie);
 
+2）从浏览器读取Cookie
+
+	//1. 获取 Cookie
+	Cookie [] cookies = request.getCookies();
+	if(cookies != null && cookies.length > 0){
+		for(Cookie cookie: cookies){
+	//2. 获取 Cookie 的 name 和 value
+		out.print(cookie.getName() + ": " + cookie.getValue());
+		out.print("<br>"); 
+		}
+3）会话cookie和持久化cookie
+    //如果不设置过期时间，关闭浏览器cookie就消失了
+
+    //如果设置了过期时间，浏览器会把cookie存在硬盘上
+4）应用
+    //自动登录
+    //显示浏览过的商品信息
+		
