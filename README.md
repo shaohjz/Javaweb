@@ -152,7 +152,7 @@ request.getCookies（）
 
 Cookie的发送，放入http响应报文，默认用户退出后被删除。
 
-![cookie传送过程示意图](http://p7mezsuru.bkt.clouddn.com/2018-05-02-15252279850846.jpg "在这里输入图片标题")
+![cookie传送过程示意图](http://p7mezsuru.bkt.clouddn.com/2018-05-02-15252312909965.jpg "cookie传送过程示意图")
 
 
 COOKIE API:
