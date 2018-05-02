@@ -156,15 +156,20 @@ Cookie的发送，放入http响应报文，默认用户退出后被删除。
 
 
 COOKIE API:
+
 1）向客户端浏览器写入Cookie
-//创建一个cookie对象
+
+// 创建一个cookie对象
 Cookie cookie =new Cookie（“name”，“cookie的name”）；
-//setMaxAge
+
+// setMaxAge
 像存储于磁盘上的Cookie，是需要设置MaxAge，要用setMaxAge（）方法，数值单位是秒：0表示命令浏览器删除内存中的Coookie，负数是永远不会存储Coookie
 就是Coookie的持久化
-//设置Cookie的作用范围：可以作用当前目录和当前目录的子目录，但不能作用于当前目录的上一级目录
+
+// 设置Cookie的作用范围：可以作用当前目录和当前目录的子目录，但不能作用于当前目录的上一级目录
 cookie.setPath(request.get(ContextPath());
-//调用response的一个方法把Cookie传给客户端
+
+// 调用response的一个方法把Cookie传给客户端
 response.addCookie(cookie);
 
 2）从浏览器读取Cookie
