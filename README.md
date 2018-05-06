@@ -1,12 +1,20 @@
 <a name="顶部"></a>
             # 目录
 
+<a href="#展示链接">展示链接</a>
+
+<a href="#w1">第一至六周</a>
+
 <a href="#w7">第七周</a>
+
 <a href="#w8">第八周</a>
+
 <a href="#w9">第九周</a>
+
 <a href="#w10">第十周</a>
 
 
+<a name="展示链接"></a>
 # 展示链接：
 # 1.[MVC教程例子实现链接](http://shaohjz.site:8080/JAVAWEB_LEARN/)
 # 2.[第十周练习简单购物车](http://shaohjz.site:8080/day_35/shoppingcart/step-1.jsp)
@@ -254,4 +262,3 @@ response.addCookie(cookie);
 encodeURL方法
 encodeRedirectURL方法
 用在超链接ahref、和form表单的action属性
-
