@@ -194,3 +194,50 @@ response.addCookie(cookie);
     1.   //自动登录
     2.   //显示浏览过的商品信息
 		
+
+# 第十周 session
+
+## HTTPSession——在服务器端保持http转改信息的方案。
+*  产生httpsession对象的过程：
+ 
+1. 有sessid：浏览器请求——服务器检查sessionid，服务器按照sessionid检索出此session使用（检索不到可能服务器认为此session过期，删除对应的session对象，但用户认为在请求的url后面附加一个jsession的参数）
+1. 无sessid：服务器创建session和有sessid并保存，且有sessid返给客户端
+
+* 使用cookie跟踪session
+
+    session默认使用cookie实现，为session cookie，存于浏览器内存中，不写在硬盘
+## HTTPSession生命周期
+    
+#### * 创建
+
+1. server端程序调HttpServletReques.getSession(true)或 HttpServletReques.getSession()
+2. 第一次访问某jsp，且page指定的session属性属性为true（默认也为 true）
+
+#### * 销毁
+
+
+
+
+1. ①. 直接调用 HttpSession 的 invalidate()
+1. ②. HttpSession 超过过期时间. 
+	> 返回最大时效: getMaxInactiveInterval() 单位是秒
+	> 设置最大时效: setMaxInactiveInterval(int interval)
+	> 可以在 web.xml 文件中配置 Session 的最大时效, 单位是分钟. 	
+	<session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+
+1. ③. 卸载当前 WEB 应用. 
+注意: 关闭浏览器不会销毁 Session!
+
+#### * URL重写
+作用：不支持cookie的浏览器与web服务器保持会话
+定义：将会话标识号以参数附加在url地址后为url重写
+
+encodeURL方法
+encodeRedirectURL方法
+用在超链接ahref、和form表单的action属性
+
+
+
