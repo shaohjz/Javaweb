@@ -1,11 +1,22 @@
+<a name="顶部"></a>
+            # 目录
+
+<a href="#w7">第七周</a>
+<a href="#w8">第八周</a>
+<a href="#w9">第九周</a>
+<a href="#w10">第十周</a>
+
+
 # 展示链接：
 # 1.[MVC教程例子实现链接](http://shaohjz.site:8080/JAVAWEB_LEARN/)
-# 2.
+# 2.[第十周练习简单购物车](http://shaohjz.site:8080/day_35/shoppingcart/step-1.jsp)
+
 # 第一周——第六周，javaweb 基础学习，servlet 的学习
 ### 
-
+<a name="w7"></a>
 # 第七周
 
+<a href="#顶部">回到顶部</a>
 
 实现了数据的增删查，修改部分还没看，下次会跟上进度。
 
@@ -27,7 +38,10 @@
     }  
  **_这个 class T clazz、和
 反射是在干什么_** 希望老师能讲一下，以及花几分钟大概讲解一些 jdbc、dao 
+<a name="w8"></a>
 # 第八周
+
+<a href="#顶部">回到顶部</a>
 继续学习完成上周没完成的 MVC部分
 1. 删除操作
 超链接：delete.do?id=<%=customer.getId()%>
@@ -127,9 +141,10 @@ public class CriteriaCustomer {
 
 ```
 4）.
-
+<a name="w9"></a>
 # 第九周
 
+<a href="#顶部">回到顶部</a>
 ## 整理加深理解mvc的案例，学习cookie部分。
 http是无状态协议，所以购物车类的应用，需要一种机制记录用BS的响应。
 Servlet两种机制：
@@ -194,9 +209,10 @@ response.addCookie(cookie);
     1.   //自动登录
     2.   //显示浏览过的商品信息
 		
-
+<a name="w10"></a>
 # 第十周 session
 
+<a href="#顶部">回到顶部</a>
 ## HTTPSession——在服务器端保持http转改信息的方案。
 *  产生httpsession对象的过程：
  
@@ -238,6 +254,4 @@ response.addCookie(cookie);
 encodeURL方法
 encodeRedirectURL方法
 用在超链接ahref、和form表单的action属性
-
-
 
