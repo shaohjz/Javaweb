@@ -20,6 +20,7 @@
 # 2.[第十周练习简单购物车](http://shaohjz.site:8080/day_35/shoppingcart/step-1.jsp)
 
 # 第一周——第六周，javaweb 基础学习，servlet 的学习
+<a name="w1"></a>
 ### 
 <a name="w7"></a>
 # 第七周
@@ -262,3 +263,6 @@ response.addCookie(cookie);
 encodeURL方法
 encodeRedirectURL方法
 用在超链接ahref、和form表单的action属性
+
+
+<a href="#顶部">回到目录</a>
