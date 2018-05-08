@@ -262,7 +262,14 @@ response.addCookie(cookie);
 
 -------
 
-# 第十周 session
+# 第十周 session和bootstrap
+
+## bootstrap
+
+bootstrap是Twitter旗下的开源前段框架，使用比较简单。
+jsp代码头部加入源，然后在要用的地方选择，比如button（发现form表单的sumbit按钮通用）选择输入相应的class即可。
+
+练习中选择了两个按钮的样式，测试了一下
 
 <a href="#目录">回到目录</a>
 
