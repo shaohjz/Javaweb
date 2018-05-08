@@ -81,10 +81,43 @@ jsp 文件中 jquery 的写法：
 </script>
 ```
 1.MVC整体的架构：
-![MVC整体的架构](http://p7mezsuru.bkt.clouddn.com/15244576395628.jpg "在这里输入图片标题")
+![MVC整体的架构](http://p7mezsuru.bkt.clouddn.com/2018-05-08-15257602281839.jpg)
 
 2.多个请求对应一个 servlet：
-![MVC 案例小结1](http://p7mezsuru.bkt.clouddn.com/15244565673805.jpg "在这里输入图片标题")
+    xml文件映射 *.do可以处理一切.do操作：
+```
+  <servlet-mapping>
+    <servlet-name>CustomerServlet</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+```
+    在Servlet文件的doget和dopost方法中：
+
+```
+
+		//1. 获取 ServletPath: /edit.do 或 /addCustomer.do
+		String servletPath = req.getServletPath();
+
+		//2. 去除 / 和 .do, 得到类似于 edit 或 addCustomer 这样的字符串
+		String methodName = servletPath.substring(1);
+		methodName = methodName.substring(0, methodName.length() - 3);
+		
+		try {
+			//3. 利用反射获取 methodName 对应的方法
+			Method method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class, 
+					HttpServletResponse.class);
+			//4. 利用反射调用对应的方法
+			method.invoke(this, req, resp);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//可以有一些响应.
+			resp.sendRedirect("error.jsp");
+		}
+		
+	}
+
+```
+
 3.查询：MVC 的整个的流程
 query.do-->doPost-->query-->JSP
 query方法的代码：
