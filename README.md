@@ -1,5 +1,5 @@
 <a name="顶部"></a>
-            # 目录
+# 目录
 
 <a href="#展示链接">展示链接</a>
 
@@ -17,7 +17,6 @@
 <a name="展示链接"></a>
 # 展示链接：
 # 1.[MVC教程例子实现链接](http://shaohjz.site:8080/JAVAWEB_LEARN/)
-# 2.[第十周练习简单购物车](http://shaohjz.site:8080/day_35/shoppingcart/step-1.jsp)
 
 # 第一周——第六周，javaweb 基础学习，servlet 的学习
 <a name="w1"></a>
@@ -264,5 +263,59 @@ encodeURL方法
 encodeRedirectURL方法
 用在超链接ahref、和form表单的action属性
 
+
+## 绝对路径的问题
+
+写绝对路径肯定没问题，相对路径，尤其转发至sevlet时，若jsp还是相对于该jsp的地址，则路径混乱。
+
+
+#### 绝对路径的概念：相对于当前web应用的根路径的路径
+    相对于项目（当前web应用）名字路径、contextpath（当前web应用的上下文路径）
+    
+######javaweb中的 ————  “/ “”   ————————代表着什么？
+    
+    1.  当前web应用的根路径 http://localhost:8080/contextpath/  需要交给Servlet容器处理
+            >请求转发时
+            request.getRequestDispatcher("/path/b .jsp").forword(request.response)
+            >web.xml文件中映射servlet访问路径：
+            <Servlet-mapping>
+            <servlet-name>TestServlet</servlet-name>
+            <url-pattern>/TestServlet</servlet-name>
+    2. WEB站点的根路径:http://localhost:8080/   交给浏览器来处理
+        >超链接<a href="/xxxxx">
+        >表表单中的action：<form action="/login.jsp">
+        >做请求重定向的时候：response.sendRedirect("/a.jsp")
+    
+    
+    
+#### 表单的重复提交
+    
+    表单的重复提交会加重服务器的负担、日常使用点多次提交可能结账的时候就有很多，所以要避免这种情况。
+    
+   如何避免表单的重复提交：
+   在表单中做一个标记，提交到Servlet，检查标记是否存在且是否和预定义的标记一致，若一致，则手里请求，并销毁标记，若不一致则直接响应提示信息，重复提交。
+
+   方法：把标记放在session中
+
+    >在原表单页面，生成一个随机值token
+    >在原表单页面，把token值放入session属性中
+    >在原表单页面，把token值放入到隐藏域中
+    
+    >在目标的Servlet中：获取session和隐藏域中的token值
+    >比较两个值是否一致：
+        若一致，受理请求，且把session域中的token属性清除
+        若不一致，则直接响应提示页面：“重复提交”
+        
+            
+#### 使用HttpSession实现验证码
+    >在原表单页面，生成一个验证码的图片，生成图片的同时，需要把该图片中的字符放入到session中。
+    >在原表单页面，生成一个文本域
+     
+    >在目标的Servlet中：获取session和表单域中的验证码的值
+    >比较两个值是否一致：
+        若一致，受理请求，且把session域中的验证码属性清除
+        若不一致，则直接通过重定向的方式返回原表单页面，并提示用户“验证码错误 ”
+# 2.[第十周练习简单购物车](http://shaohjz.site:8080/day_35/shoppingcart/step-1.jsp)
+# 2.[第十周验证码练习](http://shaohjz.site:8080/day_35/check/index.jsp)
 
 <a href="#顶部">回到目录</a>
