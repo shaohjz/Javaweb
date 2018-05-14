@@ -49,6 +49,10 @@ public class CustomerDAOJdbcImpl extends DAO<Customer> implements CustomerDAO{
 	public void update(Customer customer) {
 		String sql = "UPDATE customers SET name = ?, address = ?, phone = ? " +
 				"WHERE id = ?";
+		System.out.println("dao中！！！"+customer.getName());
+		System.out.println("dao中！！！"+customer.getAddress());
+		System.out.println("dao中！！！"+customer.getPhone());
+		
 		update(sql, customer.getName(), customer.getAddress(), 
 				customer.getPhone(), customer.getId());
 	}

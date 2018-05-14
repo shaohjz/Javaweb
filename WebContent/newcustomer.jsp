@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<% 
 		Object msg = request.getAttribute("message");
 		if(msg != null){

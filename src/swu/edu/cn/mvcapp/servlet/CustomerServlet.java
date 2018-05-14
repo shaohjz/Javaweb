@@ -40,24 +40,16 @@ public class CustomerServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
-//		String method = request.getParameter("method");
-//		
-//		switch(method){
-//			case "add":    add(request, response); break;
-//			case "query":  query(request, response); break;
-//			case "delete": delete(request, response); break;
-//			case "update": update(request, response); break;
-//		}
-//	}
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		
 		//1. 获取 ServletPath: /edit.do 或 /addCustomer.do
 		String servletPath = req.getServletPath();
+		
 
 		//2. 去除 / 和 .do, 得到类似于 edit 或 addCustomer 这样的字符串
 		String methodName = servletPath.substring(1);
@@ -81,13 +73,17 @@ public class CustomerServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException{
 		
 		String forwardPath = "/error.jsp";
-		
 		//1. 获取请求参数 id
 		String idStr = request.getParameter("id");
 		
 		//2. 调用 CustomerDAO 的 customerDAO.get(id) 获取和 id 对应的 Customer 对象 customer
 		try {
 			Customer customer = customerDAO.get(Integer.parseInt(idStr));
+			System.out.println("servlet——edit中：：：");
+			System.out.println(customer.getName());
+
+			System.out.println("servletend-------------");
+			
 			if(customer != null){
 				forwardPath = "/updatecustomer.jsp";
 				//3. 将 customer 放入 request 中
@@ -95,7 +91,7 @@ public class CustomerServlet extends HttpServlet {
 			}
 		} catch (NumberFormatException e) {} 
 		
-		
+
 		//4. 响应 updatecustomer.jsp 页面: 转发.
 		request.getRequestDispatcher(forwardPath).forward(request, response);
 		
@@ -105,11 +101,13 @@ public class CustomerServlet extends HttpServlet {
 			throws ServletException, IOException{
 		//1. 获取表单参数: id, name, address, phone, oldName
 		String id = request.getParameter("id");
+		
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");
 		String oldName = request.getParameter("oldName");
-		
+
+				
 		//2. 检验 name 是否已经被占用:
 		
 		//2.1 比较 name 和 oldName 是否相同, 若相同说明 name 可用. 
@@ -137,6 +135,11 @@ public class CustomerServlet extends HttpServlet {
 		customer.setId(Integer.parseInt(id)); 
 		
 		//4. 调用 CustomerDAO 的  update(Customer customer) 执行更新操作
+		System.out.println("servlet——update中更新操作之前：");
+		System.out.println(customer.getName());
+
+		System.out.println("servletend-------------");
+		
 		customerDAO.update(customer);
 		
 		//5. 重定向到 query.do

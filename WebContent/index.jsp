@@ -1,11 +1,14 @@
 <%@page import="swu.edu.cn.mvcapp.dao.domain.Customer"%>
-<%@ page language="java" import="java.util.List" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
   
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <title>My JSP 'index.jsp' starting page</title>
 <script type="text/javascript" src="scripts/jquery-1.7.2.js"></script>
 <script type="text/javascript">

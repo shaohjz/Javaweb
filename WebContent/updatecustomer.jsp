@@ -8,6 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+		<% 
+		request.setCharacterEncoding("UTF-8");
+	  %>
+	  
+
+	  
 	
 	<% 
 		Object msg = request.getAttribute("message");
@@ -33,6 +39,12 @@
 			name = customer.getName();
 			address = customer.getAddress();
 			phone = customer.getPhone();
+			System.out.println("customer != null");
+			System.out.println(id);
+			System.out.println(oldName);
+			System.out.println(address);
+			System.out.println(phone);
+			
 		}else{
 			id = request.getParameter("id");
 			oldName = request.getParameter("oldName");
@@ -40,6 +52,11 @@
 			
 			address = request.getParameter("address");
 			phone = request.getParameter("phone");
+			System.out.println("customer = null");
+			System.out.println(id);
+			System.out.println(oldName);
+			System.out.println(address);
+			System.out.println(phone);
 		}
 	%>
 	
