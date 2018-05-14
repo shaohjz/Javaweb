@@ -374,4 +374,119 @@ encodeRedirectURL方法
 -------
 -------
 -------
+<h3 id="toc_0">Javabean</h3>
+一种JAVA语言写成的可重用组件。为写成JavaBean，类必须是具体的和公共的，并且具有无参数的构造器。
+
+<strong>在JSP中如何使用JavaBean</strong>
+<blockquote>
+<pre><code>  &lt;jsp:useBean&gt;标签   创建和查找JavaBean的实例对象
+  &lt;jsp:setProperty&gt;标签  设置JavaBean对象的属性
+  &lt;jsp:getProperty&gt;标签  读取JavaBean对象的属性。
+</code></pre>
+</blockquote>
+<h3 id="toc_1">EL表达式(expression language)</h3>
+语法：${sessionScope.user.sex}
+<pre><code>${sessionScope.user["sex”]} 等同于 ${sessionScope.user.sex}
+    作用：
+    (1) 当要存取的属性名称中包含一些特殊字符，如 . 或 – 等并非字母或数字的符号，就一定 要使用 [ ]，例如:
+        ${user.My-Name }是错的
+        ${user["My-Name"] }是对的
+
+</code></pre>
+<pre><code>${session Scope.username}取出session中的username变量 ==》String username =(String) session.getAttribute(“username”);
+
+</code></pre>
+<strong>EL自动转变类型</strong>，
+因为jsp从窗体传来的值，他们的类型一律是String，接收后，再将他转为其它类型。
+EL转换规则？
+···
+EL保留字(了解一下)，所谓保留字的意思是指变量在命名时，应该避开这些名字，以免编译错误
+
+<img src="http://shaohjz.site/wp-content/uploads/2018/05/15262977232313.jpg" alt="" />￼
+
+<strong>EL 隐含对象</strong>
+JSP有9个隐含对象，而EL有11个
+可分为三类：
+<blockquote>
+<pre><code> 1.与范围有关的隐含变量
+ 2.与输入有关的隐含变量
+ 3.其它隐含对象
+</code></pre>
+</blockquote>
+<h5 id="toc_2">1）与范围有关的隐含对象，applicationScope、sessionScope、requestScope和pageScope</h5>
+优先级： page》request》session》application
+<h5 id="toc_3">2）与输入有关的隐含对象，param和paramValues</h5>
+<pre><code>param获取一个请求参数： 
+request.getParameter(String name)   ==》  ${param.name}      
+paramValues获取一组请求参数：
+request.getParameterValues(String name)  ==》 ${paramValues.name} 
+</code></pre>
+<h5 id="toc_4">3）其它隐含对象</h5>
+<blockquote>pageContext 等(cookie, header, initParam 只需了解.) --&gt;
+pageContext: pageContext 即为 PageContext 类型, 但只能读取属性就可以一直的 . 下去。</blockquote>
+<pre><code>● cookie
+所谓的 cooki e 是一个小小的文本文件，它是以 key、value 的方式将 Session Tracki ng 的内容记录在这个文本文件内，这个文本文件通常存在于浏览器的暂存区内。JSTL 并没有提供设定 cooki e 的动作， 因为这个动作通常都是后端开发者必须去做的事情，而不是交给前端的开发者。假若我们在 cooki e 中 设定一个名称为 user Count r y 的值，那么可以使用${ cooki e. user Count r y} 来取得它。
+
+</code></pre>
+<pre><code>● header 和 headerValues
+header 储存用户浏览器和服务端用来沟通的数据，当用户要求服务端的网页时，会送出一个记载要求信息的标头文件，例如:用户浏览器的版本、用户计算机所设定的区域等其他相关数据。假 若要取得用户浏览器的版本，即${header["User-Agent"]}。另外在鲜少机会下，有可能同一标头名 称拥有不同的值，此时必须改为使用 headerValues 来取得这些值。
+
+
+</code></pre>
+<pre><code>● initParam
+就像其他属性一样，我们可以自行设定 web 站台的环境参数(Context)，当我们想取得这些参数时，可以使用 initParam 隐含对象去取得它，例如:当我们在 web.xml 中设定如下:
+ 
+`   &lt;context-param&gt; 
+   &lt;param-name&gt;userid&lt;/param-name&gt; 
+   &lt;param-value&gt;mike&lt;/param-value&gt;
+    &lt;/context-param&gt;`
+取得名为userid，值为 mike 的参数：
+String userid=(String)application.getInitParameter("userid");
+${initParam.userid}
+</code></pre>
+<pre><code>● pageContext
+我们可以使用 ${pageContext}来取得其他有关用户要求或页面的详细信息。表 6-5 列出了几个 比较常用的部分。
+</code></pre>
+<img src="http://shaohjz.site/wp-content/uploads/2018/05/15262844149149.jpg" alt="" />￼
+<img src="http://shaohjz.site/wp-content/uploads/2018/05/15262844295966.jpg" alt="" />￼
+
+<img src="http://shaohjz.site/wp-content/uploads/2018/05/15262979834708.jpg" alt="" />￼
+<img src="http://shaohjz.site/wp-content/uploads/2018/05/15262979988685.jpg" alt="" />￼
+
+<img src="http://shaohjz.site/wp-content/uploads/2018/05/15262859823507.jpg" alt="" />￼
+<img src="http://shaohjz.site/wp-content/uploads/2018/05/15262859961334.jpg" alt="" />￼
+<pre><code>注意
+
+因为 ${} 在JSP2.0中是特殊字符，JSP容器会自动将它当做EL来执行，因此，假若要显 示 ${}时，必须在 $ 前加上 \ ，如:\ ${ XXXXX }
+
+</code></pre>
+el就是不断地调用javabean的get方法。
+学了jstl才可以遍历！
+
+enumerate列举，枚举
+<h5 id="toc_5">Empty运算符</h5>
+<blockquote><!-- empty 可以作用于一个集合, 若该集合不存在或集合中没有元素, 其结果都为 true -->
+
+Empt y 运算符主要用来判断值是否为 nul l 或空的，例如:
+${empty param.name}</blockquote>
+<pre><code>empty运算符的规则
+(1) {empty} A
+● 假若 A为 null时，回传 true
+● 否则，假若A为空String时，回传 true
+● 否则，假若A为空Array时，回传true
+● 否则，假若A为空Map时，回传true
+● 否则，假若A为空 Collection 时，回传true
+● 否则，回传 fal se
+
+</code></pre>
+<h5 id="toc_6">条件运算符 ?</h5>
+<pre><code class="language-${A">意思是说，当 A为 t r ue 时，执行 B;而 A为 f al se 时，则执行 C
+
+</code></pre>
+<h5 id="toc_7">EL函数 EL Functions</h5>
+ns:function( arg1, arg2, arg3 .... argN)
+其中 ns 为前置名称(prefix) ，它必须和 taglib 指令的前置名称一样。如下范例:
+&lt;%@taglib prefix="my" uri="<a href="http://jakarta.apache.org/tomcat/jsp2-example-taglib">http://jakarta.apache.org/tomcat/jsp2-example-taglib</a>" %&gt;
+.......
+$ {my:function(param.name) }
 <a href="#目录">回到目录</a>
