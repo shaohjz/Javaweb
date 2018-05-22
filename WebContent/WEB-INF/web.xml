@@ -18,6 +18,7 @@
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
+  
    <servlet>
     <servlet-name>InitServlet</servlet-name>
     <servlet-class>swu.edu.cn.mvcapp.servlet.InitServlet</servlet-class>
