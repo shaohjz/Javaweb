@@ -12,6 +12,9 @@
 
 <a href="#w10">第十周</a>
 
+<a href="#w11">第十一周</a>
+
+
 
 -------
 
@@ -372,7 +375,11 @@ encodeRedirectURL方法
 没什么问题，就是大概知道了session的概念原理，应用方面避免表单的重复提交和验证码只看懂原理，但自己出来写有难度
 
 -------
+
+<a name="w11"></a>
+
 -------
+# 第十一周 Javabean和EL表达式
 -------
 <h3 id="toc_0">Javabean</h3>
 一种JAVA语言写成的可重用组件。为写成JavaBean，类必须是具体的和公共的，并且具有无参数的构造器。
@@ -489,4 +496,29 @@ ns:function( arg1, arg2, arg3 .... argN)
 &lt;%@taglib prefix="my" uri="<a href="http://jakarta.apache.org/tomcat/jsp2-example-taglib">http://jakarta.apache.org/tomcat/jsp2-example-taglib</a>" %&gt;
 .......
 $ {my:function(param.name) }
+
+### 存在问题：
+
+Java基础有点问题，需要加强java基础的学习
+
+Java工具包提供了强大的数据结构。在Java中的数据结构主要包括以下几种接口和类：
+
+枚举（Enumeration）
+
+位集合（BitSet）
+
+向量（Vector）
+
+栈（Stack）
+
+字典（Dictionary）
+
+哈希表（Hashtable）
+
+属性（Properties）
+
+枚举（The Enumeration）接口定义了一种从数据结构中取回连续元素的方式。
+
+-------
+
 <a href="#目录">回到目录</a>
