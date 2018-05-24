@@ -14,6 +14,9 @@
 
 <a href="#w11">第十一周</a>
 
+<a href="#w12">第十二周</a>
+
+
 
 
 -------
@@ -508,16 +511,6 @@ $ {my:function(param.name) }
 
 <h1 id="toc_0">第十二周</h1>
 
-<h3 id="toc_1">自定义标签</h3>
-
-<p><a name="w12"></a></p>
-
-<hr/>
-
-<p><a href="#目录">回到目录</a></p>
-
-<h1 id="toc_0">第十二周</h1>
-
 <h2 id="toc_1">自定义标签</h2>
 
 <blockquote>
@@ -596,7 +589,10 @@ private String count;</p>
 <blockquote>
 <p>1). 若一个标签有标签体: <br/>
 (在jsp中)<br/>
-<a href="atguigu:testJspFragment">atguigu:testJspFragment</a>abcdefg<a href="/atguigu:testJspFragment">/atguigu:testJspFragment</a></p>
+    ```
+ <a href="atguigu:testJspFragment">atguigu:testJspFragment</a>abcdefg<a 
+ href="/atguigu:testJspFragment">/atguigu:testJspFragment</a></p>
+ ```
 
 <p>在自定义标签的标签处理器中使用 JspFragment 对象封装标签体信息. </p>
 
@@ -656,5 +652,11 @@ tagdependent: 表示标签体交由标签本身去解析处理。<br/>
 
 <p>练习1：<br/>
 定制一个带有两个属性的标签<max>, 用于计算并输出两个数的最大值<br/>
+[练习1](http://shaohjz.site:8080/JAVAWEB_LEARN/easytag/test.jsp)
+
+
 练习2：</p>
+[练习2](http://shaohjz.site:8080/JAVAWEB_LEARN/easytag/test2.jsp)
+
+
 <a href="#目录">回到目录</a>
