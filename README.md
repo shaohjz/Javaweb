@@ -652,11 +652,11 @@ tagdependent: 表示标签体交由标签本身去解析处理。<br/>
 
 <p>练习1：<br/>
 定制一个带有两个属性的标签<max>, 用于计算并输出两个数的最大值<br/>
-[练习1](http://shaohjz.site:8080/JAVAWEB_LEARN/easytag/test.jsp)
+
+[链接](http://shaohjz.site:8080/JAVAWEB_LEARN/easytag/test.jsp)
 
 
-练习2：</p>
-[练习2](http://shaohjz.site:8080/JAVAWEB_LEARN/easytag/test2.jsp)
+练习2：[链接](http://shaohjz.site:8080/JAVAWEB_LEARN/easytag/test2.jsp)
 
 
 <a href="#目录">回到目录</a>
