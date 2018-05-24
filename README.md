@@ -497,28 +497,164 @@ ns:function( arg1, arg2, arg3 .... argN)
 .......
 $ {my:function(param.name) }
 
-### 存在问题：
-
-Java基础有点问题，需要加强java基础的学习
-
-Java工具包提供了强大的数据结构。在Java中的数据结构主要包括以下几种接口和类：
-
-枚举（Enumeration）
-
-位集合（BitSet）
-
-向量（Vector）
-
-栈（Stack）
-
-字典（Dictionary）
-
-哈希表（Hashtable）
-
-属性（Properties）
-
-枚举（The Enumeration）接口定义了一种从数据结构中取回连续元素的方式。
 
 -------
 
+<p><a name="w12"></a></p>
+
+<hr/>
+
+<p><a href="#目录">回到目录</a></p>
+
+<h1 id="toc_0">第十二周</h1>
+
+<h3 id="toc_1">自定义标签</h3>
+
+<p><a name="w12"></a></p>
+
+<hr/>
+
+<p><a href="#目录">回到目录</a></p>
+
+<h1 id="toc_0">第十二周</h1>
+
+<h2 id="toc_1">自定义标签</h2>
+
+<blockquote>
+<p>概念与原理：<br/>
+用户定义的一种自定义的jsp标记 。jsp页面被编译为servlet时，tag标签被转化成了对一个称为 标签处理类 的对象的操作。<br/>
+所以，当jsp页面被jsp引擎转化为servlet后，实际上tag标签被转化为了对tag处理类的操作。 </p>
+
+<p><img src="http://shaohjz.site/wp-content/uploads/2018/05/15269943841426.jpg" alt=""/>￼</p>
+
+<h3 id="toc_2">自定义标签(HelloSimpleTag)的过程</h3>
+
+<blockquote>
+<p>1). HelloWorld<br/>
+①. 创建一个标签处理器类: 实现 SimpleTag 接口. <br/>
+②. 在 WEB-INF 文件夹下新建一个 .tld(标签库描述文件) 为扩展名的 xml 文件. 并拷入固定的部分: 并对 <br/>
+<del>description, display-name, tlib-version,</del> <br/>
+<strong>short-name</strong>,  <strong>uri</strong> <br/>
+做出修改<br/>
+<strong>&lt;!-- 其中short-name, uri 最重要！ 标签 --&gt;</strong><br/>
+③. 在 tld 文件中描述自定义的标签:</p>
+
+<pre><code class="language-&lt;!--">   &lt;tag&gt;
+    &lt;!-- 标签的名字: 在 JSP 页面上使用标签时的名字 --
+    &lt;name&gt;hello&lt;/name&gt;
+    &lt;!-- 标签所在的全类名 --&gt;
+    &lt;tag-class&gt;com.atguigu.javaweb.tag.HelloSimpleTag&lt;/tag-class&gt;
+    &lt;!-- 标签体的类型 --&gt;
+    &lt;body-content&gt;empty&lt;/body-content&gt;
+   &lt;/tag&gt;
+</code></pre>
+
+<p>④. 在 JSP 页面上使用自定义标签: </p>
+
+<p>使用 taglib 指令导入标签库描述文件: &lt;%@taglib uri=&quot;<a href="http://www.atguigu.com/mytag/core">http://www.atguigu.com/mytag/core</a>&quot; prefix=&quot;atguigu&quot; %&gt;</p>
+
+<p>使用自定义的标签: <a href="atguigu:hello/">atguigu:hello/</a> <br/>
+```</p>
+
+<h3 id="toc_3">带属性的自定义标签:</h3>
+
+<p>①. 先在标签处理器类中定义 setter 方法. 建议把所有的属性类型都设置为 String 类型. </p>
+
+<p>private String value;<br/>
+private String count;</p>
+
+<p>public void setValue(String value) {<br/>
+    this.value = value;<br/>
+}</p>
+
+<p>public void setCount(String count) {<br/>
+    this.count = count;<br/>
+}</p>
+
+<p>②. 在 tld 描述文件中来描述属性:</p>
+
+<pre><code class="language-&lt;!--">&lt;attribute&gt;
+  &lt;!-- 属性名, 需和标签处理器类的 setter 方法定义的属性相同 --&gt;
+  &lt;name&gt;value&lt;/name&gt;
+  &lt;!-- 该属性是否被必须 --&gt;
+  &lt;required&gt;true&lt;/required&gt;
+  &lt;!-- rtexprvalue: runtime expression value 
+      当前属性是否可以接受运行时表达式的动态值 --&gt;
+  &lt;rtexprvalue&gt;true&lt;/rtexprvalue&gt;
+&lt;/attribute&gt;
+</code></pre>
+
+<p>③. 在页面中使用属性, 属性名同 tld 文件中定义的名字. </p>
+
+<p><code>&lt;atguigu:hello value=&quot;${param.name }&quot; count=&quot;10&quot;/&gt;</code></p>
+</blockquote>
+
+<p>4). 通常情况下开发简单标签直接继承 SimpleTagSupport 就可以了. 可以直接调用其对应的 getter 方法得到对应的 API </p>
+
+<h3 id="toc_4">带标签体的自定义标签</h3>
+
+<blockquote>
+<p>1). 若一个标签有标签体: <br/>
+(在jsp中)<br/>
+<a href="atguigu:testJspFragment">atguigu:testJspFragment</a>abcdefg<a href="/atguigu:testJspFragment">/atguigu:testJspFragment</a></p>
+
+<p>在自定义标签的标签处理器中使用 JspFragment 对象封装标签体信息. </p>
+
+<p>2). 若配置了标签含有标签体, 则 JSP 引擎会调用 setJspBody() 方法把 JspFragment 传递给标签处理器类<br/>
+在 SimpleTagSupport 中还定义了一个 getJspBody() 方法, 用于返回 JspFragment 对象. </p>
+
+<p>3). JspFragment 的 invoke(Writer) 方法: 把标签体内容从 Writer 中输出, 若为 null, <br/>
+则等同于 invoke(getJspContext().getOut()), 即直接把标签体内容输出到页面上</p>
+
+<p>有时, 可以 借助于 StringWriter, 可以在标签处理器类中先得到标签体的内容: </p>
+
+<pre><code>   1. 利用 StringWriter 得到标签体的内容.
+   StringWriter sw = new StringWriter();
+   bodyContent.invoke(sw);
+   2. 把标签体的内容都变为大写
+    String content = sw.toString().toUpperCase();
+</code></pre>
+
+<p>4). 在 tld 文件中, 使用 body-content 节点来描述标签体的类型: </p>
+
+<p><body-content>: 指定标签体的类型, 大部分情况下, 取值为 scriptless。可能取值有 3 种：<br/>
+empty: 没有标签体<br/><br/>
+scriptless: 标签体可以包含 el 表达式和 JSP 动作元素，但不能包含 JSP 的脚本元素<br/>
+tagdependent: 表示标签体交由标签本身去解析处理。<br/>
+若指定 tagdependent，在标签体中的所有代码都会原封不动的交给标签处理器，而不是将执行结果传递给标签处理器</p>
+
+<p><body-content>tagdependent</body-content></p>
+
+<p>5). 定义一个自定义标签: <atguigu:printUpper time="10">abcdefg</atguigu> 把标签体内容转换为大写, 并输出 time 次到<br/>
+浏览器上. </p>
+</blockquote>
+
+<h3 id="toc_5">带父标签体的标签</h3>
+
+<blockquote>
+<p>使用：</p>
+
+<pre><code>    &lt;c:choose&gt;
+        &lt;c:when test=&quot;${param.age &gt; 24}&quot;&gt;大学毕业&lt;/c:when&gt;
+        &lt;c:when test=&quot;${param.age &gt; 20}&quot;&gt;高中毕业&lt;/c:when&gt;
+        &lt;c:otherwise&gt;高中以下...&lt;/c:otherwise&gt;
+    &lt;/c:choose&gt;
+</code></pre>
+
+<p>1). 父标签无法获取子标签的引用, 父标签仅把子标签作为标签体来使用. <br/>
+2). 子标签可以通过 getParent() 方法来获取父标签的引用。</p>
+
+<pre><code>    需继承 
+    SimpleTagSupport 
+    或
+    自实现 SimpleTag 接口的该方法
+</code></pre>
+</blockquote>
+
+<h3 id="toc_6">EL的自定义函数（几乎不用）</h3>
+</blockquote>
+
+<p>练习1：<br/>
+定制一个带有两个属性的标签<max>, 用于计算并输出两个数的最大值<br/>
+练习2：</p>
 <a href="#目录">回到目录</a>
