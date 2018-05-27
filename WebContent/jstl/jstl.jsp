@@ -49,7 +49,6 @@
 	<c:forTokens items="${requestScope.test }" delims="." var="s">
 		${s }<br>
 	</c:forTokens>
-	
 	<h4>c:forEach: 可以对数组, Collection, Map 进行遍历, begin(对于集合 begin 从 0 开始算), end, step</h4>
 	<c:forEach begin="1" end="10" step="3" var="i">
 		${ i} --
