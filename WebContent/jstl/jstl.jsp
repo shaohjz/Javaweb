@@ -45,9 +45,10 @@
 	<c:import url="http://www.baidu.com"></c:import>
 
 	<h4>c:forTokens: 处理字符串的, 类似于 String 的 split() 方法</h4>
+	c:forTokens: 处理字符串的, 类似于 String 的 split() 方法!!!!!!
 	<c:set value="a,b,c.d.e.f;g;h;j" var="test" scope="request"></c:set>
 	<c:forTokens items="${requestScope.test }" delims="." var="s">
-		${s }<br>
+	<br>${s }<br>
 	</c:forTokens>
 	<h4>c:forEach: 可以对数组, Collection, Map 进行遍历, begin(对于集合 begin 从 0 开始算), end, step</h4>
 	<c:forEach begin="1" end="10" step="3" var="i">
@@ -55,7 +56,7 @@
 	</c:forEach>
 	<br><br>
 	
-	<% 
+<%-- 	<% 
 		List<Customer> custs = new ArrayList<Customer>();
 		custs.add(new Customer(1, "AAA")); //index: 0 
 		custs.add(new Customer(2, "BBB")); //1
@@ -65,17 +66,18 @@
 		custs.add(new Customer(6, "FFF")); //5
 		
 		request.setAttribute("custs", custs);
-	%>
+	%> --%>
 	
 	<br><br>
 	<!-- 遍历 Collection, 遍历数组同 Collection -->
+	 遍历 Collection, 遍历数组同 Collection？？？？
 	<c:forEach items="${requestScope.custs }" var="cust"
 		varStatus="status">
 		${status.index}, ${status.count}, ${status.first}, ${status.last}: ${cust.id }: ${cust.name }<br>
 	</c:forEach>
 	
 	<!-- 遍历 Map -->
-	<% 
+<%-- 	<% 
 		Map<String, Customer> custMap = new HashMap<String, Customer>();
 		custMap.put("a", new Customer(1, "AAA")); //index: 0 
 		custMap.put("b", new Customer(2, "BBB")); //index: 0 
@@ -85,7 +87,7 @@
 		custMap.put("f", new Customer(6, "FFF")); //index: 0 
 		
 		request.setAttribute("custMap", custMap);
-	%>
+	%> --%>
 	
 	<br><br>
 	<c:forEach items="${requestScope.custMap }" var="cust">
@@ -130,7 +132,6 @@
 	<h4>c:if: 不能实现 else 操作, 但可以把结果储存起来。 </h4>
 	<c:if test="${requestScope.age > 18 }">成年了!</c:if>
 	<br><br>
-	
 	<c:if test="${param.age > 18 }" var="isAdult" scope="request"></c:if>
 	isAdult: <c:out value="${requestScope.isAdult }"></c:out>
 
